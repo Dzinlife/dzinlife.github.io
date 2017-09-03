@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><title>dzinlife.com</title><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><link href=/static/css/app.ce6d47ced2d15518dce2a7a47ce0dca7.css rel=stylesheet></head><body><div id=app></div><script>/*eslint-disable*/
+      (function() {
+        function getDefaultFontSize(pa){
+          pa= pa || document.body;
+          var who= document.createElement('div');
+
+          who.style.cssText='display:inline-block; padding:0; line-height:1; position:absolute; visibility:hidden; font-size:1em';
+
+          who.appendChild(document.createTextNode('M'));
+          pa.appendChild(who);
+          var fs= [who.offsetWidth, who.offsetHeight];
+          pa.removeChild(who);
+          return fs;
+        }
+        var defaultFontSize = getDefaultFontSize()[1]
+
+        function setRemUnit(){
+          var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+          var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+          var fontSize = Math.min(w, h)/32;
+          
+          fontSize *= 16/defaultFontSize
+          if(fontSize > 16) {
+            fontSize = 16;
+          }
+
+          document.getElementsByTagName('html')[0].style.fontSize = fontSize + "px";
+        }
+        setRemUnit()
+        window.addEventListener("resize", setRemUnit);
+
+        if( /Android/g.test( navigator.userAgent ) ){
+          setTimeout( function(){
+            window.removeEventListener("resize", setRemUnit);
+          }, 1000)
+        }
+      }())</script><script type=text/javascript src=/static/js/manifest.3ec244bb9dd8b90466ad.js></script><script type=text/javascript src=/static/js/vendor.9bc67f0c9166b0a950a9.js></script><script type=text/javascript src=/static/js/app.99e71d99952dc6b1aaf3.js></script></body></html>
