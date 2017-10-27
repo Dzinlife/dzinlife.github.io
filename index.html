@@ -1,31 +1,49 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><title>dzinlife.com</title><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><script src=https://embed.small.chat/T7J3XBSGGG7KKQ2PHU.js async></script><link href=/static/css/app.0538649597e9d41d1826002f75f1a6e4.css rel=stylesheet></head><body><div id=app></div><script>/*eslint-disable*/
+<!DOCTYPE html><html><head><meta charset=utf-8><title>dzinlife.com</title><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><script src=https://embed.small.chat/T7J3XBSGGG7KKQ2PHU.js async></script><link href=/static/css/app.dbbcc44b510059fc9c83fb423440ad50.css rel=stylesheet></head><body><div id=app></div><script>/*eslint-disable*/
       (function() {
+        var docEl = document.documentElement
+        var dpr = window.devicePixelRatio || 1
+
         function getDefaultFontSize(pa){
-          pa = pa || document.body;
-          var who = document.createElement('div');
-
-          who.style.cssText='display:inline-block; padding:0; line-height:1; position:absolute; visibility:hidden; font-size:1em';
-
-          who.appendChild(document.createTextNode('M'));
-          pa.appendChild(who);
-          var fs= [who.offsetWidth, who.offsetHeight];
-          pa.removeChild(who);
-          return fs;
+          var testElement = document.createElement('div')
+          testElement.style.cssText='display:inline-block; padding:0; line-height:1; position:absolute; visibility:hidden; font-size:1em; font-family: sans-serif'
+          testElement.appendChild(document.createTextNode('M'))
+          docEl.appendChild(testElement)
+          var fontSize = testElement.offsetHeight
+          docEl.removeChild(testElement)
+          return fontSize
         }
-        var defaultFontSize = getDefaultFontSize()[1]
+        var defaultFontSize = getDefaultFontSize()
 
         function setRemUnit(){
-          var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-          var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-          var fontSize = Math.min(w, h)/32;
+          var w = Math.min(document.documentElement.clientWidth, window.innerWidth || 0)
+          var h = Math.min(document.documentElement.clientHeight, window.innerHeight || 0)
+          var fontSize = Math.min(w, h) / 32
           
-          fontSize *= 16/defaultFontSize
-          if(fontSize > 16) {
-            fontSize = 16;
+          fontSize *= 16 / defaultFontSize
+          if (fontSize > 16) {
+            fontSize = 16
           }
 
-          document.getElementsByTagName('html')[0].style.fontSize = fontSize + "px";
+          document.documentElement.style.fontSize = fontSize + "px"
         }
         setRemUnit()
-        window.addEventListener("resize", setRemUnit);
-      }())</script><script type=text/javascript src=/static/js/manifest.66c850c122e6ace7bd87.js></script><script type=text/javascript src=/static/js/vendor.5f88875bcd87010f9681.js></script><script type=text/javascript src=/static/js/app.4ef7ab0722d52b21e2c1.js></script></body></html>
+        window.addEventListener("resize", setRemUnit)
+        window.addEventListener('pageshow', function (e) {
+          if (e.persisted) {
+            setRemUnit()
+          }
+        })
+
+        // detect 0.5px supports
+        if (dpr >= 2) {
+          var fakeBody = document.createElement('body')
+          var testElement = document.createElement('div')
+          testElement.style.border = '.5px solid transparent'
+          fakeBody.appendChild(testElement)
+          docEl.appendChild(fakeBody)
+          if (testElement.offsetHeight === 1) {
+            docEl.classList.add('hairlines')
+          }
+          docEl.removeChild(fakeBody)
+        }
+      }())</script><script type=text/javascript src=/static/js/manifest.c0a7570fe707e252b47f.js></script><script type=text/javascript src=/static/js/vendor.33979da9b88df91bf6d9.js></script><script type=text/javascript src=/static/js/app.7478303aea43e57c446f.js></script></body></html>
